@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="navigation">
+        <div class="nav-container">
+          <nav>
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="About.html">About Me</a></li>
+          <li> <a href="Etude.html">Skills</a></li>
+          <li><a href="Formation.html">Etude et Formation</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+        </ul>
+      </nav>
+          </div>
+      </section>
+    <div id="Etude">
+        <div class="skillbar-wrapper">
+            <div class="skillbar clearfix html5" data-percent="80%">
+              <h4 class="skillbar-title"><span>HTML5</span></h4>
+              <div class="skillbar-bar"></div>
+              <div class="skill-bar-percent">80%</div>
+            </div>
+            
+            <div class="skillbar clearfix css" data-percent="65%">
+              <h4 class="skillbar-title"><span>CSS</span></h4>
+              <div class="skillbar-bar"></div>
+              <div class="skill-bar-percent">65%</div>
+            </div>
+            
+            <div class="skillbar clearfix javascript" data-percent="60%">
+              <h4 class="skillbar-title"><span>JavaScript</span></h4>
+              <div class="skillbar-bar"></div>
+              <div class="skill-bar-percent">60%</div>
+            </div>
+            
+            <div class="skillbar clearfix react" data-percent="80%">
+              <h4 class="skillbar-title"><span>React js</span></h4>
+              <div class="skillbar-bar"></div>
+              <div class="skill-bar-percent">80%</div>
+            </div>
+            
+            <div class="skillbar clearfix node" data-percent="80%">
+              <h4 class="skillbar-title"><span>Node js</span></h4>
+              <div class="skillbar-bar"></div>
+              <div class="skill-bar-percent">80%</div>
+            </div>
+            
+            <div class="skillbar clearfix php" data-percent="50%">
+              <h4 class="skillbar-title"><span>PHP</span></h4>
+              <div class="skillbar-bar"></div>
+              <div class="skill-bar-percent">50%</div>
+            </div>
+            
+            <div class="skillbar clearfix python" data-percent="60%">
+              <h4 class="skillbar-title"><span>Python</span></h4>
+              <div class="skillbar-bar"></div>
+              <div class="skill-bar-percent">60%</div>
+            </div>
+            </div>  
+
+    </div>
+</body>
+<script>
+    (function() {
+  
+  var SkillsBar = function( bars ) {
+    this.bars = document.querySelectorAll( bars );
+    if( this.bars.length > 0 ) {
+      this.init();
+    } 
+  };
+  
+  SkillsBar.prototype = {
+    init: function() {
+      var self = this;
+      self.index = -1;
+      self.timer = setTimeout(function() {
+        self.action();
+      }, 500);
+      
+      
+    },
+    select: function( n ) {
+      var self = this,
+        bar = self.bars[n];
+        
+        if( bar ) {
+          var width = bar.parentNode.dataset.percent;
+        
+          bar.style.width = width;
+          bar.parentNode.classList.add( "complete" ); 
+        }
+    },
+    action: function() {
+      var self = this;
+      self.index++;
+      if( self.index == self.bars.length ) {
+        clearTimeout( self.timer );
+      } else {
+        self.select( self.index );  
+      }
+      
+      setTimeout(function() {
+        self.action();
+      },500);
+    }
+  };
+  
+  window.SkillsBar = SkillsBar;
+  
+})();
+
+(function() {
+  document.addEventListener( "DOMContentLoaded", function() {
+    var skills = new SkillsBar( ".skillbar-bar" );
+  });
+})();
+</script>
+</html>
